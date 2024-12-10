@@ -92,6 +92,7 @@ def GeneticAlgorithm(encrypted_text, numGens, popsize, crossover_rate, mutation_
             out_file.write(f"Gen {i+1:<3}: {currPop[0].key}\t{currPop[0].score}\n")
         bestKey = currPop[0].key
         update_label(result_out, bestKey)
+        update_label(best_key_score, f"Score: {currPop[0].score}")
         ciph = XORCipher(bestKey)
         text = ciph.decrypt(encrypted_text=encrypted_text)
         update_decrypted_text(text)
@@ -212,6 +213,8 @@ best_key_label = ttk.Label(output_frame, text="Best Key:")
 best_key_label.grid(row=2, column=0, columnspan=1, pady=5)
 best_key_output = ttk.Label(output_frame, text="")
 best_key_output.grid(row=2, column=1, columnspan=2, pady=5)
+best_key_score = ttk.Label(output_frame, text="Score: 10000")
+best_key_score.grid(row=3, column=0, columnspan=1, pady=2, padx=5)
 
 # Run the application
 root.mainloop()
